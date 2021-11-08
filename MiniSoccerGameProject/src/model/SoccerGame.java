@@ -15,7 +15,7 @@ public class SoccerGame {
 
 	private Boolean isOver;
 
-	private final PlayerCollection gamePlayers;
+	private final PlayerCollection<GamePlayer> gamePlayers;
 
 	public SoccerGame() {
 		timeRemaining = 60;
@@ -24,7 +24,7 @@ public class SoccerGame {
 		isOver = false;
 		SoccerBall.getSoccerBall().resetSoccerBall();
 		PlayerFactory playerFactory = new PlayerFactory();
-		gamePlayers = new PlayerCollection();
+		gamePlayers = new PlayerCollection<GamePlayer>();
 		gamePlayers.add(playerFactory.getPlayer("striker"));
 		gamePlayers.add(playerFactory.getPlayer("goalkeeper"));
 		startGame();
@@ -89,7 +89,7 @@ public class SoccerGame {
 		isOver = over;
 	}
 
-	public PlayerCollection getGamePlayers() {
+	public PlayerCollection<GamePlayer> getGamePlayers() {
 		return gamePlayers;
 	}
 
