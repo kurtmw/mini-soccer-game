@@ -1,25 +1,56 @@
 package model;
 
-import java.awt.Color;
+import java.util.Random;
+import java.awt.*;
 
 import model.players.GamePlayer;
 import model.players.Goalkeeper;
 import model.players.Striker;
 
+/**
+ * Factory class to create GamePlayer objects.
+ */
+
 public class PlayerFactory {
 
-	public GamePlayer getPlayer(String playerType) {
-		if (playerType == null) {
-			return null;
-		}
+	Color randomColor1;
+	Color randomColor2;
 
-		if (playerType.equalsIgnoreCase("STRIKER")) {
-			return new Striker("Striker", Color.RED);
-		} else if (playerType.equalsIgnoreCase("GOALKEEPER")) {
-			return new Goalkeeper("Goalkeeper", Color.BLUE);
+	/**
+	 * Creates factory objects that creates GamePlayer objects and assigns random
+	 * colors to them.
+	 */
+
+	public PlayerFactory() {
+		Random rand = new Random();
+		float r1 = rand.nextFloat();
+		float g1 = rand.nextFloat();
+		float b1 = rand.nextFloat();
+		float r2 = rand.nextFloat();
+		float g2 = rand.nextFloat();
+		float b2 = rand.nextFloat();
+
+		this.randomColor1 = new Color(r1, g1, b1);
+		this.randomColor2 = new Color(r2, g2, b2);
+	}
+
+	/**
+	 * Creates GamePlayer objects based on given parameter.
+	 * 
+	 * @param gamePlayerString
+	 * @return GamePlayer objects based on given String parameter or return null if
+	 *         none given.
+	 */
+
+	public GamePlayer getPlayer(String gamePlayerString) {
+		if (gamePlayerString == null) {
+			return null;
+		} else if (gamePlayerString.equalsIgnoreCase("STRIKER")) {
+			return new Striker("Striker", randomColor1);
+		} else if (gamePlayerString.equalsIgnoreCase("GOALKEEPER")) {
+			return new Goalkeeper("Goal Keeper", randomColor2);
 		}
 
 		return null;
 	}
-
 }
