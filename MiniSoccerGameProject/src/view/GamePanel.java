@@ -3,7 +3,7 @@ package view;
 import model.SoccerBall;
 import model.SoccerGame;
 import model.players.GamePlayer;
-//import model.players.PlayerCollection;
+import model.PlayerCollection;
 
 import javax.swing.*;
 import java.awt.*;
@@ -91,7 +91,7 @@ public class GamePanel extends JPanel {
 	}
 
 	private void paintPlayers(Graphics g) {
-		model.PlayerCollection<GamePlayer> gamePlayers = game.getGamePlayers();
+		PlayerCollection gamePlayers = game.getGamePlayers();
 		for (GamePlayer player : gamePlayers) {
 			g.setColor(player.getPlayerColor());
 			g.drawOval(player.getPlayerPosition().x, player.getPlayerPosition().y, 30, 30);
@@ -117,7 +117,7 @@ public class GamePanel extends JPanel {
 			g.setColor(Color.red);
 			g.setFont(uiFont);
 			g.drawString("Game Over!", 250, 250);
-			model.PlayerCollection<GamePlayer> gamePlayers = game.getGamePlayers();
+			PlayerCollection gamePlayers = game.getGamePlayers();
 			gamePlayers.sort();
 			int y = 300;
 			for (GamePlayer player : gamePlayers) {
